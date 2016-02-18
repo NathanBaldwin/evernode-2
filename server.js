@@ -4,6 +4,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,7 +19,10 @@ app.use(bodyParser.urlencoded({
   extended:false
 }))
 
+app.use(methodOverride('_method')); //allows us to override post from form
 app.use(note)
+
+//looks for '_mothod=DELETE' query parameter in form action and overwrites post, making it a DELETE request
 
 app.get('/', (req, res) => {
   res.send('Server Running');
