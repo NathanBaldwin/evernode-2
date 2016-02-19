@@ -1,0 +1,12 @@
+h1 Category Index
+
+table
+  thead
+    tr
+      th Name
+      th Description
+  tbody
+    each category in categories
+      tr
+        td: a(href='/categories/#{category._id}')= category.name
+        td= category.description
